@@ -1,0 +1,345 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #4276d6;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    /* ===== Transition ===== */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+.flash-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 300px;
+}
+  
+.alert {
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    animation: fadeIn 0.3s ease-in-out;
+}
+  
+.alert.success {
+    background-color: #81cf93;
+}
+  
+.alert.error {
+    background-color: #d66b75;
+}
+  
+.alert.warning {
+    background-color: #ebcf7e;
+    color: #333;
+}
+  
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: var(--body-color);
+    transition: var(--tran-05);
+}
+
+body.dark{
+        /* ===== Colors ===== */
+
+        --body-color: #18191A;
+        --sidebar-color: #242526;
+        --primary-color: #3A3B3C;
+        --primary-color-light: #3A3B3C;
+        --toggle-color: #FFF;
+        --text-color: #CCC;
+}
+
+/* ===== Barra Superior ===== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 2em;
+    color: var(--text-color);
+    user-select: none;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: var(--tran-05);
+}
+
+.navigation a:hover{
+    color: var(--primary-color);
+}
+
+.navigation a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid var(--text-color);
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-left: 40px;
+    transition: var(--tran-05);
+}
+
+.navigation .btnLogin-popup:hover {
+    background: var(--primary-color);
+    border: var(--primary-color);
+    color: var(--sidebar-color);    
+}
+
+/* ===== Modal Translúcido ===== */
+.container {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(80px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: var(--tran-05), height var(--tran-02);
+}
+
+.container.active-popup {
+    transform: scale(1);
+}
+
+.container.active {
+    height: 520px;
+}
+
+.container .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.container .form-box.login {
+    transition: var(--tran-05);
+    transform: translateX(0);
+}
+
+.container.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.container .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.container.active .form-box.register{
+    transition: var(--tran-05);
+    transform: translateX(0);
+}
+
+.container .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: var(--primary-color);
+    font-size: 2em;
+    color: var(--sidebar-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* ===== Campos Modal ('Nome', 'E-mail' e 'Senha') ===== */
+.form-box h1 {
+    font-size: 30px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid var(--primary-color);
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: var(--primary-color);
+    font-weight: 500;
+    pointer-events: none;
+    transition: var(--tran-05);
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px
+} 
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box i {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: var(--primary-color);
+    line-height: 57px;
+}
+
+/* ===== Campos Modal ('Lembre de mim', 'Esqueci minha senha' e 'Termos e Condições') ===== */
+.remember-forgot-agree {
+    display: flex;
+    justify-content: space-between;
+    margin:  -15px 0 15px;
+}
+
+.remember-forgot-agree label input {
+    accent-color: var(--sidebar-color);
+    margin-right: 5px;
+}
+
+.remember-forgot-agree a {
+    text-decoration: none;
+    color: var(--sidebar-color);
+}
+
+.remember-forgot-agree a:hover{
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+/* ===== Campos Modal ('Login' e 'Register') ===== */
+.button {
+    width: 100%;
+    height: 45px;
+    background: var(--primary-color);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: var(--sidebar-color);
+    font-weight: 500;
+}
+
+/* ===== Campos Modal ('Sign Up' e 'Sign In') ===== */
+.login-register {
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.login-register a {
+    text-decoration: none;
+    color: var(--sidebar-color);
+    font-weight: 600;
+}
+
+.login-register a:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+/* ===== Rodapé ===== */
+.footer-main {
+    width: 100%;
+    background-color: var(--sidebar-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 14px;
+}
+
+.footer-main p {
+    margin: 0;
+}
