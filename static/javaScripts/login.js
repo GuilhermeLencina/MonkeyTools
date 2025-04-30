@@ -1,21 +1,79 @@
+// Seletores principais
 const container = document.querySelector('.container');
-const loginLink = document.querySelector('.login-link');
-const registerLink = document.querySelector('.register-link');
 const btnPopup = document.querySelector('.btnLogin-popup');
 const iconClose = document.querySelector('.icon-close');
 
-registerLink.addEventListener('click', ()=> {
-    container.classList.add('active');
-})
+// Caixas de formulário
+const loginBox = document.querySelector('.form-box.login');
+const registerBox = document.querySelector('.form-box.register');
+const forgotBox = document.querySelector('.form-box.forgot');
 
-loginLink.addEventListener('click', ()=> {
-    container.classList.remove('active');
-})
+// Funções para alternar telas
+function showLogin() {
+  if (loginBox && registerBox && forgotBox) {
+    loginBox.style.display = 'block';
+    registerBox.style.display = 'none';
+    forgotBox.style.display = 'none';
+  }
+}
 
-btnPopup.addEventListener('click', ()=> {
+function showRegister() {
+  if (loginBox && registerBox && forgotBox) {
+    loginBox.style.display = 'none';
+    registerBox.style.display = 'block';
+    forgotBox.style.display = 'none';
+  }
+}
+
+function showForgot() {
+  if (loginBox && registerBox && forgotBox) {
+    loginBox.style.display = 'none';
+    registerBox.style.display = 'none';
+    forgotBox.style.display = 'block';
+  }
+}
+
+// Evento para abrir o modal (botão "Login")
+if (btnPopup) {
+  btnPopup.addEventListener('click', () => {
     container.classList.add('active-popup');
-})
+    showLogin();
+  });
+}
 
-iconClose.addEventListener('click', ()=> {
+// Evento para fechar o modal (ícone "X")
+if (iconClose) {
+  iconClose.addEventListener('click', () => {
     container.classList.remove('active-popup');
-})
+  });
+}
+
+// Evento de troca para Sign Up
+document.querySelectorAll('.register-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    showRegister();
+  });
+});
+
+// Eventos de retorno para Sign In
+document.querySelectorAll('.login-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    showLogin();
+  });
+});
+
+// Evento de troca para Forgot Password
+document.querySelectorAll('.forgot-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    showForgot();
+  });
+});
+
+// Exibir login automaticamente ao abrir a página
+window.addEventListener('DOMContentLoaded', () => {
+  container.classList.add('active-popup');
+  showLogin();
+});

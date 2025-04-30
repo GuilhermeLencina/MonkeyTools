@@ -1,0 +1,6 @@
+flask
+flask-login
+python-dotenv
+werkzeug
+itsdangerous
+psycopg2-binary

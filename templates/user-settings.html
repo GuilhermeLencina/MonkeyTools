@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Configurações do Usuário</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/user-settings.css') }}">
+</head>
+<body>
+  <div class="user-settings-container">
+    <h1>Bem-vindo, {{ user.name }}!</h1>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    <h2>Alterar Senha</h2>
+    <form action="/change-password" method="POST">
+      <input type="password" name="current_password" placeholder="Senha Atual" required>
+      <input type="password" name="new_password" placeholder="Nova Senha" required>
+      <input type="password" name="confirm_password" placeholder="Confirmar Nova Senha" required>
+      <button type="submit">Atualizar Senha</button>
+    </form>
+
+    <br>
+    <a href="/logout" class="logout-link">Sair</a>
+  </div>
+</body>
+</html>

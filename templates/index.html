@@ -1,147 +1,141 @@
 <!-- Coding by PMSCompany -->
 <!DOCTYPE html>
-    <html lang="pt-br">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            <!-- ===== CSS ===== -->
-            <link rel="stylesheet" href="static/css/index.css">
-            
-            <!-- ===== Boxicons CSS ===== -->
-            <link rel="shortcut icon" href="static/images/icon.png" type="image/x-icon">
-            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
-            
-            <title>MonkeyTools</title>
-        </head>
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="static/css/index.css">
+    
+    <!-- ===== Boxicons CSS ===== -->
+    <link rel="shortcut icon" href="static/images/icon.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+    
+    <title>MonkeyTools</title>
+</head>
 
-    <body>
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        <div class="flash-container">
-            {% for category, message in messages %}
-            <div class="alert {{ category }}">
-                {{ message }}
-            </div>
-            {% endfor %}
+<body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-container">
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">
+            {{ message }}
         </div>
-        {% endif %}
-        {% endwith %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 
-        <!-- Barra Superior -->
-        <header>
-            <h2 class="logo">MonkeyTools</h2>
-            <nav class="navigation">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Contact</a>
-                <button class="btnLogin-popup">Login</button>
-            </nav>
-        </header>
+    <!-- Barra Superior -->
+    <header>
+        <h2 class="logo">MonkeyTools</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>
+    </header>
 
-        <!-- Navegação entre as páginas        
-        <div class="interface">
-            <section id="home" class="page1">
-                <h1>Home</h1>
-            </section>
-            <section id="about" class="page2">
-                <h1>About</h1>
-            </section>
-            <section id="services" class="page3">
-                <h1>Services</h1>
-            </section>
-            <section id="contact" class="page4">
-                <h1>Contact</h1>
-            </section>
-        </div> -->
+    <!-- Login / Registro / Forgot -->
+    <div class="container">
+        <span class="icon-close">
+            <i class='bx bx-x'></i>
+        </span>
 
-        <!-- Login e Registro -->
-        <div class="container">
-            <span class="icon-close">
-                <i class='bx bx-x'></i>
-            </span>
+        <!-- Login -->
+        <div class="form-box login">
+            <h1>Sign In</h1>
+            <form action="/signIn" method="POST">
+                <div class="input-box">
+                    <input placeholder="E-mail" name="email" type="email" required>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <div class="input-box">
+                    <input placeholder="Password" name="password" type="password" id="password" required>
+                    <i class='bx bxs-lock-alt' id="togglePassword"></i>
+                </div>
 
-            <!-- Login -->
-            <div class="form-box login">
-                <h1>Sign In</h1>
+                <div class="remember-forgot-agree">
+                    <label>
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
 
-                <!-- Campos -->
-                <form action="/signIn" method="POST">
-                    <div class="input-box">
-                        <input placeholder="E-mail" name="email" type="email" required>
-                        <i class='bx bxs-envelope'></i>
-                    </div>
-                    <div class="input-box">
-                        <input placeholder="Password" name="password" type="password" id="password" required>
-                        <i class='bx bxs-lock-alt' id="togglePassword"></i>
-                    </div>
-    
-                    <!-- Lembre de mim e Esqueci a senha -->
-                    <div class="remember-forgot-agree">
-                        <label>
-                            <input type="checkbox">
-                            Remember me
-                        </label>
-                        <a href="#">Forgot password?</a>
-                    </div>
-    
-                    <!-- Botão Logar e Botão registro -->
-                    <button type="submit" class="button">Login</button>
-    
-                    <div class="login-register">
-                        <p>Don't have an account? <a href="#" class="register-link">Sign Up</a></p>
-                    </div>
-                </form>
-            </div>
+                <button type="submit" class="button">Login</button>
 
-            <!-- Registro -->
-            <div class="form-box register">
-                <h1>Sign Up</h1>
-                <form action="/signUp" method="POST">
-                    <!-- Campos -->
-                        <div class="input-box">
-                            <input placeholder="Name" name="name" type="text" required>       
-                            <i class='bx bxs-user' ></i>
-                        </div>
-                        <div class="input-box">
-                            <input placeholder="E-mail" name="email" type="email" required>  
-                            <i class='bx bxs-envelope'></i>
-                        </div>
-                        <div class="input-box">
-                            <input placeholder="Password" name="password" type="password" id="registerPassword" required>
-                            <i class='bx bxs-lock-alt' id="toggleRegisterPassword"></i>
-                        </div>
-    
-                    <!-- Termos e Condições -->
-                    <div class="remember-forgot-agree">
-                        <label>
-                            <input type="checkbox" required>
-                            Agree to the <a href="#">terms & conditions</a>
-                        </label>
-                    </div>
-    
-                    <!-- Botão Registro e Botão Logar -->
-                    <button type="submit" class="button" href="#">Register</button>
-    
-                    <div class="login-register">
-                        <p>Already have an account? <a href="#" class="login-link">Sign In</a></p>
-                    </div>
-                </form>
-            </div>
+                <div class="login-register">
+                    <p>Don't have an account? <a href="#" class="register-link">Sign Up</a></p>
+                </div>
+            </form>
         </div>
 
-        <!-- Rodapé -->
-        <footer class="footer-main">
-            <p>&copy; 2025 PMSCompany. Todos os direitos reservados.</p>
-        </footer>
+        <!-- Registro -->
+        <div class="form-box register" style="display: none;">
+            <h1>Sign Up</h1>
+            <form action="/signUp" method="POST">
+                <div class="input-box">
+                    <input placeholder="Name" name="name" type="text" required>       
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input placeholder="E-mail" name="email" type="email" required>  
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <div class="input-box">
+                    <input placeholder="Password" name="password" type="password" id="registerPassword" required>
+                    <i class='bx bxs-lock-alt' id="toggleRegisterPassword"></i>
+                </div>
 
-        <!-- Scripts -->
-        <script src="static/javaScripts/login.js"></script>
-        <script src="static/javaScripts/passwordEye.js"></script>
-        <script src="static/javaScripts/flashMessages.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    </body>
+                <div class="remember-forgot-agree">
+                    <label>
+                        <input type="checkbox" required>
+                        Agree to the <a href="#">terms & conditions</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="button">Register</button>
+
+                <div class="login-register">
+                    <p>Already have an account? <a href="#" class="login-link">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Forgot Password -->
+        <div class="form-box forgot" style="display: none;">
+            <h1>Forgot Password</h1>
+            <form action="/forgot-password" method="POST">
+                <div class="input-box">
+                    <input placeholder="E-mail" name="email" type="email" required>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+
+                <button type="submit" class="button">Send Instructions</button>
+
+                <div class="login-register">
+                    <p>Remembered your password? <a href="#" class="login-link">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer-main">
+        <p>&copy; 2025 PMSCompany. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="static/javaScripts/login.js"></script>
+    <script src="static/javaScripts/passwordEye.js"></script>
+    <script src="static/javaScripts/flashMessages.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
 </html>
